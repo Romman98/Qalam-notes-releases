@@ -3,7 +3,7 @@
 const SITE = {
   repo: "Romman98/Qalam-notes-releases",            // e.g. "your-user/qalam-notes"
   storeUrl: "",   // Microsoft Store link once the app is live ("" hides the button)
-  feedbackUrl: "", // Google Apps Script web app ("" hides feedback and reviews)
+  feedbackUrl: "https://script.google.com/macros/s/AKfycbzqhQETzpf0Gk3uQ2yDdhddVXodL0HsqoEDNgLxtATgyoNhy9G-reHV1rF0oO1VCZQ/exec", // Google Apps Script web app ("" hides feedback and reviews)
 };
 
 (function () {
