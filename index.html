@@ -83,6 +83,14 @@
     </div>
   </section>
 
+  <section id="reviews" class="reviews hidden" aria-live="polite">
+    <div class="wrap">
+      <h2>What people say</h2>
+      <p class="section-lead" id="reviews-lead">Reviews from Qalam Notes users.</p>
+      <div class="rv-grid" id="rv-grid"></div>
+    </div>
+  </section>
+
   <section class="private">
     <div class="wrap private-in">
       <div class="lock"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
@@ -116,12 +124,37 @@
       <p class="all-releases"><a id="all-releases" href="#">All releases and release notes →</a></p>
     </div>
   </section>
+
+  <section id="feedback" class="feedback hidden">
+    <div class="wrap fb-in">
+      <div class="fb-text">
+        <h2>Tell us what you think</h2>
+        <p>Found a bug, missing a feature, or enjoying Qalam Notes? Send it here. Reviews you allow to be shown may appear on this page after a quick check.</p>
+      </div>
+      <form id="fb-form" class="fb-form" novalidate>
+        <div class="fb-types" role="radiogroup" aria-label="Type">
+          <label><input type="radio" name="type" value="review" checked><span>Review</span></label>
+          <label><input type="radio" name="type" value="idea"><span>Idea</span></label>
+          <label><input type="radio" name="type" value="bug"><span>Bug</span></label>
+        </div>
+        <div class="fb-stars" id="fb-stars" role="radiogroup" aria-label="Rating"></div>
+        <textarea name="message" rows="5" maxlength="4000" placeholder="Your message" required></textarea>
+        <div class="fb-row">
+          <input name="name" maxlength="60" placeholder="Name (shown with a review)">
+          <input name="email" type="email" maxlength="120" placeholder="Email (optional, for a reply)">
+        </div>
+        <label class="fb-check" id="fb-public-row"><input type="checkbox" name="public" checked> Show my review and name on this website</label>
+        <input class="fb-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="fb-actions"><button class="btn primary" type="submit">Send</button><span class="fb-status" id="fb-status" role="status"></span></div>
+      </form>
+    </div>
+  </section>
 </main>
 
 <footer class="foot">
   <div class="wrap foot-in">
     <span>© <span id="year">2026</span> Romman Tech</span>
-    <nav><a href="privacy.html">Privacy policy</a><a id="foot-releases" href="#">Releases</a><a href="mailto:romman.ahmad@outlook.com">Contact</a></nav>
+    <nav><a href="privacy.html">Privacy policy</a><a href="#feedback" id="foot-feedback" class="hidden">Feedback</a><a id="foot-releases" href="#">Releases</a><a href="mailto:romman.ahmad@outlook.com">Contact</a></nav>
   </div>
 </footer>
 <script src="site.js"></script>
