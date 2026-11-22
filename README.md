@@ -1,7 +1,9 @@
 # Qalam Notes
 
 Fast, local-first notes for Windows and Linux: free-form pages, rich text, tables,
-code blocks, templates and full-text search. Your notes stay on your computer.
+code blocks, handwriting, audio, reminders, templates and full-text search, in
+OneNote-style notebooks. Your notes stay on your computer; sync between your PCs
+is optional and end-to-end encrypted.
 
 - Website: https://qalam.romman-tech.com
 - Downloads: see [Releases](../../releases/latest)
