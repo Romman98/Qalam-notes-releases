@@ -129,21 +129,29 @@
     <div class="wrap fb-in">
       <div class="fb-text">
         <h2>Tell us what you think</h2>
-        <p>Found a bug, missing a feature, or enjoying Qalam Notes? Send it here. Reviews you allow to be shown may appear on this page after a quick check.</p>
+        <p>Enjoying Qalam Notes? Leave a review. Found a bug or missing a feature? Tell us. Reviews you allow to be shown may appear on this page after a quick check.</p>
       </div>
       <form id="fb-form" class="fb-form" novalidate>
-        <div class="fb-types" role="radiogroup" aria-label="Type">
-          <label><input type="radio" name="type" value="review" checked><span>Review</span></label>
-          <label><input type="radio" name="type" value="idea"><span>Idea</span></label>
-          <label><input type="radio" name="type" value="bug"><span>Bug</span></label>
+        <div class="fb-modes" role="tablist" aria-label="What would you like to send?">
+          <label><input type="radio" name="mode" value="review" checked><span>Write a review</span></label>
+          <label><input type="radio" name="mode" value="feedback"><span>Send feedback or report a bug</span></label>
         </div>
-        <div class="fb-stars" id="fb-stars" role="radiogroup" aria-label="Rating"></div>
-        <textarea name="message" rows="5" maxlength="4000" placeholder="Your message" required></textarea>
-        <div class="fb-row">
-          <input name="name" maxlength="60" placeholder="Name (shown with a review)">
-          <input name="email" type="email" maxlength="120" placeholder="Email (optional, for a reply)">
+        <div class="fb-review">
+          <div class="fb-stars" id="fb-stars" role="radiogroup" aria-label="Rating"></div>
+          <textarea name="review" rows="5" maxlength="4000" placeholder="Your review"></textarea>
+          <input name="name" maxlength="60" placeholder="Your name (shown with the review)">
+          <label class="fb-check"><input type="checkbox" name="public" checked> Show my review and name on this website</label>
         </div>
-        <label class="fb-check" id="fb-public-row"><input type="checkbox" name="public" checked> Show my review and name on this website</label>
+        <div class="fb-feedback hidden">
+          <div class="fb-types" role="radiogroup" aria-label="Kind">
+            <label><input type="radio" name="kind" value="bug" checked><span>Bug</span></label>
+            <label><input type="radio" name="kind" value="idea"><span>Idea</span></label>
+            <label><input type="radio" name="kind" value="other"><span>Other</span></label>
+          </div>
+          <input name="subject" maxlength="140" placeholder="Subject (e.g. The highlighter paints the wrong color)">
+          <textarea name="details" rows="5" maxlength="4000" placeholder="Details: what happened, what you expected, and the steps to get there"></textarea>
+          <input name="email" type="email" maxlength="120" placeholder="Email (optional, if you'd like a reply)">
+        </div>
         <input class="fb-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="fb-actions"><button class="btn primary" type="submit">Send</button><span class="fb-status" id="fb-status" role="status"></span></div>
       </form>

@@ -108,32 +108,39 @@ function setupFeedback() {
     b.addEventListener("click", () => { rating = i; paint(); });
     starsBox.append(b);
   }
+  const isReview = () => form.mode.value === "review";
   const sync = () => {
-    const review = form.type.value === "review";
-    starsBox.classList.toggle("hidden", !review);
-    document.getElementById("fb-public-row").classList.toggle("hidden", !review);
+    form.querySelector(".fb-review").classList.toggle("hidden", !isReview());
+    form.querySelector(".fb-feedback").classList.toggle("hidden", isReview());
+    status.textContent = "";
   };
-  form.querySelectorAll('input[name="type"]').forEach((r) => r.addEventListener("change", sync));
+  form.querySelectorAll('input[name="mode"]').forEach((r) => r.addEventListener("change", sync));
   sync();
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const message = form.message.value.trim();
-    if (message.length < 3) { status.textContent = "Please write a message."; form.message.focus(); return; }
+    let body;
+    if (isReview()) {
+      const message = form.review.value.trim();
+      if (!rating) { status.textContent = "Please choose a star rating."; return; }
+      if (message.length < 3) { status.textContent = "Please write your review."; form.review.focus(); return; }
+      body = { type: "review", rating, message, name: form.name.value.trim(), public: form.public.checked };
+    } else {
+      const subject = form.subject.value.trim(), message = form.details.value.trim();
+      if (subject.length < 3) { status.textContent = "Please add a short subject."; form.subject.focus(); return; }
+      if (message.length < 3) { status.textContent = "Please describe it in the details."; form.details.focus(); return; }
+      body = { type: form.kind.value, subject, message, email: form.email.value.trim() };
+    }
+    Object.assign(body, { website: form.website.value, source: "website", os: navigator.platform || "" });
     const btn = form.querySelector("button[type=submit]");
     btn.disabled = true;
     status.textContent = "Sending…";
-    const body = {
-      type: form.type.value, rating: form.type.value === "review" ? rating : 0, message,
-      name: form.name.value.trim(), email: form.email.value.trim(),
-      public: form.type.value === "review" && form.public.checked,
-      website: form.website.value, source: "website", os: navigator.platform || "",
-    };
     try {
       // text/plain keeps this a "simple" request (no CORS preflight, which Apps Script can't answer)
       const r = await fetch(SITE.feedbackUrl, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(body) });
       const d = await r.json();
       if (!d.ok) throw new Error(d.error || "failed");
-      form.reset(); rating = 0; paint(); sync();
+      const mode = form.mode.value;
+      form.reset(); form.mode.value = mode; rating = 0; paint(); sync();
       status.textContent = "Thank you! Your message was sent.";
     } catch (err) {
       status.textContent = `Couldn't send it (${err.message}). Please try again, or email romman.ahmad@outlook.com.`;
