@@ -157,5 +157,12 @@ section h2 { font-size: clamp(28px, 3.4vw, 38px); letter-spacing: -0.02em; margi
   border-radius: 9px; background: transparent; color: var(--fg-soft); cursor: pointer; padding: 0; }
 .theme-btn:hover { background: var(--bg-soft); color: var(--fg); }
 .theme-btn svg { width: 18px; height: 18px; }
+/* shows the mode you'd switch to: a moon while light, a sun while dark */
 .theme-btn .t-icon { display: none; }
-:root:not([data-theme]) .theme-btn .t-system, :root[data-theme="light"] .theme-btn .t-light, :root[data-theme="dark"] .theme-btn .t-dark { display: inline-flex; }
+.theme-btn .t-dark { display: inline-flex; }
+:root[data-theme="dark"] .theme-btn .t-dark { display: none; }
+:root[data-theme="dark"] .theme-btn .t-light { display: inline-flex; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-btn .t-dark { display: none; }
+  :root:not([data-theme="light"]) .theme-btn .t-light { display: inline-flex; }
+}

@@ -1,16 +1,23 @@
-// Theme: system → light → dark → system. Remembered in this browser.
+// Light/dark switch: each click flips what you see. Picking the same theme as your
+// system goes back to following the system; anything else is remembered in this browser.
 (function () {
   var btn = document.getElementById("theme-btn");
   if (!btn) return;
-  var order = ["system", "light", "dark"];
-  var label = { system: "follows your system", light: "light", dark: "dark" };
-  function current() { return document.documentElement.dataset.theme || "system"; }
-  function show() { var t = current(); btn.title = "Theme: " + label[t] + " (click to change)"; btn.setAttribute("aria-label", "Theme: " + label[t]); }
+  var root = document.documentElement;
+  var mq = window.matchMedia("(prefers-color-scheme: dark)");
+  function shown() { return root.dataset.theme || (mq.matches ? "dark" : "light"); }
+  function show() {
+    var next = shown() === "dark" ? "light" : "dark";
+    btn.title = "Switch to " + next + " mode";
+    btn.setAttribute("aria-label", btn.title);
+  }
   btn.addEventListener("click", function () {
-    var next = order[(order.indexOf(current()) + 1) % order.length];
-    if (next === "system") delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = next;
-    try { if (next === "system") localStorage.removeItem("theme"); else localStorage.setItem("theme", next); } catch (e) {}
+    var next = shown() === "dark" ? "light" : "dark";
+    var system = mq.matches ? "dark" : "light";
+    if (next === system) delete root.dataset.theme; else root.dataset.theme = next;
+    try { if (next === system) localStorage.removeItem("theme"); else localStorage.setItem("theme", next); } catch (e) {}
     show();
   });
+  if (mq.addEventListener) mq.addEventListener("change", show);
   show();
 })();
