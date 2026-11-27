@@ -6,12 +6,17 @@
 <title>Privacy policy – Qalam Notes</title>
 <link rel="icon" href="assets/favicon.png">
 <link rel="stylesheet" href="styles.css">
+<script>try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body>
 <header class="nav">
   <div class="wrap nav-in">
     <a class="brand" href="index.html"><img src="assets/logo.svg" alt="" width="28" height="28">Qalam Notes</a>
-    <nav><a href="index.html#download">Download</a></nav>
+    <nav><a href="index.html#download">Download</a>
+      <button class="theme-btn" id="theme-btn" type="button" aria-label="Theme: system" title="Theme: follows your system">
+        <span class="t-icon t-system"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span><span class="t-icon t-light"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span><span class="t-icon t-dark"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4 6.5 6.5 0 0 0 20 14.5Z"/></svg></span>
+      </button>
+    </nav>
   </div>
 </header>
 <main class="doc">
@@ -56,5 +61,6 @@
   <p>Questions about this policy: <a href="mailto:romman.ahmad@outlook.com">romman.ahmad@outlook.com</a></p>
 </main>
 <footer class="foot"><div class="wrap foot-in"><span>© 2026 Romman Tech</span><nav><a href="index.html">Home</a></nav></div></footer>
+<script src="theme.js"></script>
 </body>
 </html>
